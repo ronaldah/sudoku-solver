@@ -8,14 +8,13 @@
 import os.path
 
 
-
 #fileString = input("Enter the .cnf file you would like to test: ")
 # Step 1: Convert to 3CNF
-os.system("/Users/hrre/Documents/School/Fall\\ \\\'16/MATH\\ 499/cnftools-master/cnf2kcnf < /Users/hrre/Documents/School/Fall\\ \\\'16/MATH\\ 499/cnftools-master/sud43cnfplusclues1.cnf > /Users/hrre/Documents/School/Fall\\ \\\'16/MATH\ 499/treengeling-bbc-sc2016/build/lingeling/3cnf.cnf")
+os.system("/Users/Austin/Desktop/sudoku-solver-master/cnftools-master/cnf2kcnf < /Users/Austin/Desktop/sudoku-solver-master/cnftools-master/sud43cnfplusclues1.cnf > /Users/Austin/Desktop/sudoku-solver-master/treengeling-bbc-sc2016/build/lingeling/3cnf.cnf")
 
 # Step 2: Test satisfiability
-#os.system("cd /Users/hrre/Documents/Fall\\ \\\'16/MATH\\ 499/treengeling-bbc-sc2016/build/lingeling")
-os.system("/Users/hrre/Documents/School/Fall\\ \\\'16/MATH\\ 499/treengeling-bbc-sc2016/build/lingeling/treengeling < /Users/hrre/Documents/School/Fall\\ \\\'16/MATH\\ 499/treengeling-bbc-sc2016/build/lingeling/3cnf.cnf | tail -42 | head -5  > /Users/hrre/Documents/School/Fall\\ \\\'16/MATH\\ 499/solved.txt")
+#os.system("cd /Users/Austin/Desktop/sudoku-solver-master/treengeling-bbc-sc2016/build/lingeling")
+os.system("/Users/Austin/Desktop/sudoku-solver-master/treengeling-bbc-sc2016/build/lingeling/treengeling < /Users/Austin/Desktop/sudoku-solver-master/treengeling-bbc-sc2016/build/lingeling/3cnf.cnf | tail -42 | head -5  > /Users/Austin/Desktop/sudoku-solver-master/solved.txt")
 
 #file1 = open('solved.txt', 'r')
 
@@ -53,15 +52,15 @@ def is_unique(filename):
 #now we will begin to create our next .cnf for testing, this functions calls
 #the bulk of our helper methods and does most of the work
 def rerun_sat(filename1, filename2):
-	os.system("cat /Users/hrre/Documents/School/Fall\\ \\\'16/MATH\\ 499/solved.txt") #debugging
+	os.system("cat /Users/Austin/Desktop/sudoku-solver-master/solved.txt") #debugging
 	remove_sat(filename1)
-	os.system("cat /Users/hrre/Documents/School/Fall\\ \\\'16/MATH\\ 499/solved.txt") #debugging
-	os.chdir("/Users/hrre/Documents/School/Fall '16/MATH 499/cnftools-master/")
+	os.system("cat /Users/Austin/Desktop/sudoku-solver-master/solved.txt") #debugging
+	os.chdir("/Users/Austin/Desktop/sudoku-solver-master/cnftools-master/")
 	print 'Descending into cnftools-master'
 	gen_alt_sol(filename1)
-	os.system("cat /Users/hrre/Documents/School/Fall\\ \\\'16/MATH\\ 499/solved.txt") #debugging
+	os.system("cat /Users/Austin/Desktop/sudoku-solver-master/solved.txt") #debugging
 	print os.getcwd() #a check to make sure that we are still in the cnf tools directory
-	os.system("cp /Users/hrre/Documents/School/Fall\\ \\\'16/MATH\\ 499/solved.txt /Users/hrre/Documents/School/Fall\\ \\\'16/MATH\\ 499/cnftools-master/solved.txt")
+	os.system("cp /Users/Austin/Desktop/sudoku-solver-master/solved.txt /Users/Austin/Desktop/cnftools-master/solved.txt")
 	edit_param(filename2)
 	merge_files(filename1, filename2)
 	return;
@@ -106,7 +105,7 @@ def gen_alt_sol(filename):
 	file.close()
 	print filename #debugging
 	print 'Modifying solved.txt to include only the numbers between 0 and 64...'
-	#os.system("cat /Users/hrre/Documents/School/Fall\\ \\\'16/MATH\\ 499/solved.txt") #debugging
+	#os.system("cat /Users/Austin/Desktop/sudoku-solver-master/solved.txt") #debugging
 	return;
 
 #this changes the parameters for the .cnf file
@@ -164,23 +163,23 @@ def merge_files(filename1, filename2):
 remove_extra_char('solved.txt')
 is_unique('solved.txt')
 #print 'Converting .cnf to 3cnf..'
-#os.system("/Users/hrre/Documents/School/Fall\\ \\\'16/MATH\\ 499/cnftools-master/cnf2kcnf < /Users/hrre/Documents/School/Fall\\ \\\'16/MATH\\ 499/cnftools-master/sud43cnfplusclues1.cnf > /Users/hrre/Documents/School/Fall\\ \\\'16/MATH\ 499/treengeling-bbc-sc2016/build/lingeling/3cnfNEW.cnf")
+#os.system("/User/Austin/Desktop/sudoku-solver-master/cnftools-master/cnf2kcnf < /Users/Austin/Desktop/sudoku-solver-master/cnftools-master/sud43cnfplusclues1.cnf > /Users/Austin/Desktop/sudoku-solver-master/treengeling-bbc-sc2016/build/lingeling/3cnfNEW.cnf")
 #print 'Sending a copy of the new .cnf file, 3cnfNEW.cnf, to the sat-solver directory...'
 print 'Resetting the files to test again...'
-os.chdir("/Users/hrre/Documents/School/Fall '16/MATH 499/treengeling-bbc-sc2016/build/lingeling/")
+os.chdir("/Users/Austin/Desktop/sudoku-solver-master/treengeling-bbc-sc2016/build/lingeling/")
 #os.system('rm 3cnfNEW.cnf')
-os.chdir("/Users/hrre/Documents/School/Fall '16/MATH 499/cnftools-master/")
+os.chdir("/Users/Austin/Desktop/sudoku-solver-master/cnftools-master/")
 os.system('rm sud43cnfplusclues1.cnf')
 os.system('cp savedfile.cnf sud43cnfplusclues1.cnf')
-os.chdir("/Users/hrre/Documents/School/Fall '16/MATH 499/")
+os.chdir("/Users/Austin/Desktop/sudoku-solver-master/")
 
 
 
 
-#os.chdir("/Users/hrre/Documents/School/Fall\\ \\\'16/MATH\\ 499/cnftools-master/")
-#filepath = os.path.join('/Users/hrre/Documents/School/Fall\\ \\\'16/MATH\\ 499/cnftools-master/', 'newfile.txt')
-#if not os.path.exists('/Users/hrre/Documents/School/Fall\\ \\\'16/MATH\\ 499/cnftools-master/'):
-#	os.makedirs('/Users/hrre/Documents/School/Fall\\ \\\'16/MATH\\ 499/cnftools-master/')
+#os.chdir("/Users/Austin/Desktop/cnftools-master/")
+#filepath = os.path.join('/Users/Austin/Desktop/sudoku-solver-master/cnftools-master/', 'newfile.txt')
+#if not os.path.exists('/Users/Austin/Desktop/sudoku-solver-master/cnftools-master/'):
+#	os.makedirs('/Users/Austin/Desktop/sudoku-solver-master/cnftools-master/')
 
 
 
